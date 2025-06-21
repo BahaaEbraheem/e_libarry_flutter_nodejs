@@ -14,9 +14,9 @@ router.get('/search', async (req, res) => {
   try {
     const [books] = await db.query(`
       SELECT b.*, a.fName AS authorFName, a.lName AS authorLName, p.pName, p.city
-      FROM elibrary.books b
-      LEFT JOIN elibrary.authors a ON b.authorId = a.id
-      LEFT JOIN elibrary.publishers p ON b.publisherId = p.id
+      FROM books b
+      LEFT JOIN authors a ON b.authorId = a.id
+      LEFT JOIN publishers p ON b.publisherId = p.id
       WHERE b.title LIKE ?
     `, [`%${title}%`]);
     
